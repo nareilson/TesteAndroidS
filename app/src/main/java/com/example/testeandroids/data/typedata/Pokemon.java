@@ -1,10 +1,8 @@
-package com.example.testeandroids.data.pokemondata;
+package com.example.testeandroids.data.typedata;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
-public class Type implements Serializable {
+public class Pokemon{
 
 	@SerializedName("name")
 	private String name;

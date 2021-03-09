@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -19,11 +20,13 @@ import com.airbnb.lottie.LottieDrawable;
 import com.bumptech.glide.Glide;
 import com.example.testeandroids.R;
 import com.example.testeandroids.data.ResultsItem;
+import com.example.testeandroids.data.implementacao.ITypeResourceBussines;
+import com.example.testeandroids.data.pokemondata.TypesItem;
 import com.example.testeandroids.databinding.ActivityDescriptionPokemonBinding;
 import com.example.testeandroids.view.adapter.ListTypePokemon;
 import com.example.testeandroids.view.viewmodel.DescriptionPokemonActivityViewModel;
 
-public class DescriptionPokemonActivity extends AppCompatActivity {
+public class DescriptionPokemonActivity extends AppCompatActivity implements ITypeResourceBussines {
     private ActivityDescriptionPokemonBinding activityDescriptionPokemonBinding;
     private DescriptionPokemonActivityViewModel viewModelDescriptionActivity;
     private ListTypePokemon listTypePokemon;
@@ -34,7 +37,7 @@ public class DescriptionPokemonActivity extends AppCompatActivity {
         activityDescriptionPokemonBinding = DataBindingUtil.setContentView(this,R.layout.activity_description_pokemon);
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle(getString(R.string.txt_carregando));
-        listTypePokemon = new ListTypePokemon(new ListTypePokemon.DiffUtilsTypePokemo());
+        listTypePokemon = new ListTypePokemon(new ListTypePokemon.DiffUtilsTypePokemo(),this);
         viewModelDescriptionActivity = new ViewModelProvider(this).get(DescriptionPokemonActivityViewModel.class);
         ResultsItem resultsItem = (ResultsItem) getIntent().getSerializableExtra("pokemon");
         progressDialog.show();
@@ -77,5 +80,22 @@ public class DescriptionPokemonActivity extends AppCompatActivity {
             lottieDrawable.playAnimation();
         });
         return lottieDrawable;
+    }
+
+    @Override
+    public int getColorType(String type) {
+        return viewModelDescriptionActivity.getColorType(type);
+    }
+
+    @Override
+    public int getSrcType(String type) {
+        return viewModelDescriptionActivity.getSrcType(type);
+    }
+
+    @Override
+    public void eventClick(TypesItem typesItem) {
+        Intent intencao  = new Intent(this,TypeInfoActivity.class);
+        intencao.putExtra("type",typesItem);
+        startActivity(intencao);
     }
 }

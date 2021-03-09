@@ -10,7 +10,7 @@ import io.reactivex.rxjava3.core.Observable;
 public class MainActivityModel implements IMainActivityModel {
    private static IMainActivityModel instance;
    private MainActivityModel(){}
-   private final PokeApiService service = new RetrofitService().getDbzService();
+   private final PokeApiService service = new RetrofitService().getPokeApiService();
 
     public static IMainActivityModel getInstance(){
         if(instance == null){

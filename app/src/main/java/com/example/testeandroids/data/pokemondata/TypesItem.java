@@ -2,7 +2,9 @@ package com.example.testeandroids.data.pokemondata;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TypesItem{
+import java.io.Serializable;
+
+public class TypesItem implements Serializable {
 
 	@SerializedName("slot")
 	private int slot;

@@ -16,7 +16,8 @@
         android:theme="@style/Theme.TesteAndroidS"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".view.acivity.DescriptionPokemonActivity"></activity>
+        <activity android:name=".view.acivity.TypeInfoActivity"></activity>
+        <activity android:name=".view.acivity.DescriptionPokemonActivity" />
         <activity android:name=".view.acivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

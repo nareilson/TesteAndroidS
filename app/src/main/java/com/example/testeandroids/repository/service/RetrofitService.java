@@ -39,7 +39,7 @@ public class RetrofitService {
                 .build();
     }
 
-    public PokeApiService getDbzService(){
+    public PokeApiService getPokeApiService(){
         return  getRetrofitService().create(PokeApiService.class);
     }
 }

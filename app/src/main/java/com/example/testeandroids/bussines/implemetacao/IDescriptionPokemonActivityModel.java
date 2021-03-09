@@ -5,4 +5,6 @@ import io.reactivex.rxjava3.core.Observable;
 
 public interface IDescriptionPokemonActivityModel {
     Observable<PokemonResponse> getPokemon(String pokeName);
+    int getColorType(String type);
+    int getSrcType(String type);
 }
