@@ -21,12 +21,13 @@ import com.bumptech.glide.Glide;
 import com.example.testeandroids.R;
 import com.example.testeandroids.data.ResultsItem;
 import com.example.testeandroids.data.implementacao.ITypeResourceBussines;
+import com.example.testeandroids.data.implementacao.ITypeResourceEventClick;
 import com.example.testeandroids.data.pokemondata.TypesItem;
 import com.example.testeandroids.databinding.ActivityDescriptionPokemonBinding;
 import com.example.testeandroids.view.adapter.ListTypePokemon;
 import com.example.testeandroids.view.viewmodel.DescriptionPokemonActivityViewModel;
 
-public class DescriptionPokemonActivity extends AppCompatActivity implements ITypeResourceBussines {
+public class DescriptionPokemonActivity extends AppCompatActivity implements ITypeResourceBussines, ITypeResourceEventClick {
     private ActivityDescriptionPokemonBinding activityDescriptionPokemonBinding;
     private DescriptionPokemonActivityViewModel viewModelDescriptionActivity;
     private ListTypePokemon listTypePokemon;
@@ -37,7 +38,7 @@ public class DescriptionPokemonActivity extends AppCompatActivity implements ITy
         activityDescriptionPokemonBinding = DataBindingUtil.setContentView(this,R.layout.activity_description_pokemon);
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle(getString(R.string.txt_carregando));
-        listTypePokemon = new ListTypePokemon(new ListTypePokemon.DiffUtilsTypePokemo(),this);
+        listTypePokemon = new ListTypePokemon(new ListTypePokemon.DiffUtilsTypePokemo(),this,this);
         viewModelDescriptionActivity = new ViewModelProvider(this).get(DescriptionPokemonActivityViewModel.class);
         ResultsItem resultsItem = (ResultsItem) getIntent().getSerializableExtra("pokemon");
         progressDialog.show();

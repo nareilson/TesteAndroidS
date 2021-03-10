@@ -12,14 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.testeandroids.R;
 import com.example.testeandroids.data.implementacao.ITypeResourceBussines;
+import com.example.testeandroids.data.implementacao.ITypeResourceEventClick;
 import com.example.testeandroids.data.pokemondata.TypesItem;
 import com.example.testeandroids.databinding.ItemTypePokemonBinding;
 
 public class ListTypePokemon extends ListAdapter<TypesItem, ListTypePokemon.TypePokemonViewHolder> {
     private final ITypeResourceBussines iTypeResourceBussines;
-    public ListTypePokemon(@NonNull DiffUtil.ItemCallback<TypesItem> diffCallback,ITypeResourceBussines iTypeResourceBussines) {
+    private final ITypeResourceEventClick eventClick;
+    public ListTypePokemon(@NonNull DiffUtil.ItemCallback<TypesItem> diffCallback,ITypeResourceBussines iTypeResourceBussines,ITypeResourceEventClick eventClick) {
         super(diffCallback);
         this.iTypeResourceBussines = iTypeResourceBussines;
+        this.eventClick = eventClick;
     }
 
     @NonNull
@@ -33,7 +36,7 @@ public class ListTypePokemon extends ListAdapter<TypesItem, ListTypePokemon.Type
     public void onBindViewHolder(@NonNull TypePokemonViewHolder holder, int position) {
         holder.bindingItens(getItem(position),iTypeResourceBussines);
         holder.itemView.setOnClickListener(v->{
-            iTypeResourceBussines.eventClick(getItem(position));
+            eventClick.eventClick(getItem(position));
         });
     }
 
