@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.testeandroids.R;
 import com.example.testeandroids.data.implementacao.ITypeResourceBussines;
 import com.example.testeandroids.data.pokemondata.Type;
+import com.example.testeandroids.databinding.ItemTypeAdapterBodyBinding;
 import com.example.testeandroids.databinding.ItemTypePokemonBinding;
 
 public class PokTypeAdapterBody extends ListAdapter<Type, PokTypeAdapterBody.TyperAdapterViewHolder> {
@@ -26,7 +27,7 @@ public class PokTypeAdapterBody extends ListAdapter<Type, PokTypeAdapterBody.Typ
     @NonNull
     @Override
     public TyperAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemTypePokemonBinding itemTypePokemonBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_type_pokemon,parent,false);
+        ItemTypeAdapterBodyBinding itemTypePokemonBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_type_adapter_body,parent,false);
         return new TyperAdapterViewHolder(itemTypePokemonBinding);
     }
 
@@ -36,8 +37,8 @@ public class PokTypeAdapterBody extends ListAdapter<Type, PokTypeAdapterBody.Typ
     }
 
     static class TyperAdapterViewHolder extends RecyclerView.ViewHolder{
-        private final ItemTypePokemonBinding itemTypePokemonBinding;
-        public TyperAdapterViewHolder(@NonNull ItemTypePokemonBinding itemTypePokemonBinding) {
+        private final ItemTypeAdapterBodyBinding itemTypePokemonBinding;
+        public TyperAdapterViewHolder(@NonNull ItemTypeAdapterBodyBinding itemTypePokemonBinding) {
             super(itemTypePokemonBinding.getRoot());
             this.itemTypePokemonBinding = itemTypePokemonBinding;
         }
@@ -45,7 +46,8 @@ public class PokTypeAdapterBody extends ListAdapter<Type, PokTypeAdapterBody.Typ
         @SuppressLint("UseCompatLoadingForDrawables")
         void bindingItemView(Type item, ITypeResourceBussines resourceBussines){
             itemTypePokemonBinding.typeLogo.setImageDrawable(itemTypePokemonBinding.typeLogo.getContext().getResources().getDrawable(resourceBussines.getSrcType(item.getName())));
-            itemTypePokemonBinding.cardView.setCardBackgroundColor(itemTypePokemonBinding.cardView.getContext().getResources().getColor(resourceBussines.getColorType(item.getName())));
+            itemTypePokemonBinding.cardViewImg.setCardBackgroundColor(itemTypePokemonBinding.cardViewImg.getContext().getResources().getColor(resourceBussines.getColorType(item.getName())));
+            itemTypePokemonBinding.typeNome.setText(item.getName());
         }
     }
 

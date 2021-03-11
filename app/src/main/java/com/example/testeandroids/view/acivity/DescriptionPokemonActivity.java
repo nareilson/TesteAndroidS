@@ -36,15 +36,22 @@ public class DescriptionPokemonActivity extends AppCompatActivity implements ITy
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityDescriptionPokemonBinding = DataBindingUtil.setContentView(this,R.layout.activity_description_pokemon);
+        viewModelDescriptionActivity = new ViewModelProvider(this).get(DescriptionPokemonActivityViewModel.class);
+        listTypePokemon = new ListTypePokemon(new ListTypePokemon.DiffUtilsTypePokemo(),this,this);
+        ResultsItem resultsItem = (ResultsItem) getIntent().getSerializableExtra(getString(R.string.intent_name_pokemon));
+        initItemView(resultsItem);
+        observable();
+    }
+
+    private void initItemView(ResultsItem resultsItem){
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle(getString(R.string.txt_carregando));
-        listTypePokemon = new ListTypePokemon(new ListTypePokemon.DiffUtilsTypePokemo(),this,this);
-        viewModelDescriptionActivity = new ViewModelProvider(this).get(DescriptionPokemonActivityViewModel.class);
-        ResultsItem resultsItem = (ResultsItem) getIntent().getSerializableExtra("pokemon");
         progressDialog.show();
         viewModelDescriptionActivity.requestPokemon(resultsItem.getName());
-        initItemView();
-        observable();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getBaseContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        activityDescriptionPokemonBinding.rvTypes.setLayoutManager(linearLayoutManager);
+        activityDescriptionPokemonBinding.rvTypes.setAdapter(listTypePokemon);
     }
 
     private void observable(){
@@ -62,16 +69,9 @@ public class DescriptionPokemonActivity extends AppCompatActivity implements ITy
             progressDialog.dismiss();
         });
         viewModelDescriptionActivity.getErrorRequest().observe(this,error-> {
-            Toast.makeText(getBaseContext(),error.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), getString(R.string.alert_error,error.getLocalizedMessage()), Toast.LENGTH_LONG).show();
             progressDialog.dismiss();
         });
-    }
-
-    private void initItemView(){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getBaseContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        activityDescriptionPokemonBinding.rvTypes.setLayoutManager(linearLayoutManager);
-        activityDescriptionPokemonBinding.rvTypes.setAdapter(listTypePokemon);
     }
 
     private LottieDrawable createLottieDrawable(String filename) {
@@ -96,7 +96,7 @@ public class DescriptionPokemonActivity extends AppCompatActivity implements ITy
     @Override
     public void eventClick(TypesItem typesItem) {
         Intent intencao  = new Intent(this,TypeInfoActivity.class);
-        intencao.putExtra("type",typesItem);
+        intencao.putExtra(getString(R.string.intent_name_type),typesItem);
         startActivity(intencao);
     }
 }

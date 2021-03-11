@@ -17,13 +17,6 @@ public class TypeInfoActivityViewModel extends ViewModel {
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     MutableLiveData<TypeResponse> _responseTypePokemon = new MutableLiveData<>();
     MutableLiveData<Throwable> _requestError = new MutableLiveData<>();
-    private ArrayList<Type> listTitleDoubleDamageFrom = new ArrayList<>();
-    private ArrayList<Type> listTitleDoubleDamageTo= new ArrayList<>();
-    private ArrayList<Type> listTitleHalfDamageFrom = new ArrayList<>();
-    private ArrayList<Type> listTitleHalfDamageTo= new ArrayList<>();
-    private ArrayList<Type> listTitleNoDamageFrom = new ArrayList<>();
-    private ArrayList<Type> listTitleNoDamageTo= new ArrayList<>();
-
 
     public void getTypePokemon(String type){
         compositeDisposable.add(TypeInfoActivityModel
@@ -50,44 +43,30 @@ public class TypeInfoActivityViewModel extends ViewModel {
     }
 
     public ArrayList<Type> getListTitleDoubleDamageFrom() {
-        Type type = new Type();
-        type.setName("double_damage_from");
-        listTitleDoubleDamageFrom.add(type);
-        return listTitleDoubleDamageFrom;
+        return TypeInfoActivityModel.getInstance().listTitleDoubleDamageFrom();
     }
 
     public ArrayList<Type> getListTitleDoubleDamageTo() {
-        Type type = new Type();
-        type.setName("double_damage_to");
-        listTitleDoubleDamageFrom.add(type);
-        return listTitleDoubleDamageTo;
+        return TypeInfoActivityModel.getInstance().listTitleDoubleDamageTo();
     }
 
     public ArrayList<Type> getListTitleHalfDamageFrom() {
-        Type type = new Type();
-        type.setName("half_damage_from");
-        listTitleHalfDamageFrom.add(type);
-        return listTitleHalfDamageFrom;
+        return TypeInfoActivityModel.getInstance().listTitleHalfDamageFrom();
     }
 
     public ArrayList<Type> getListTitleHalfDamageTo() {
-        Type type = new Type();
-        type.setName("half_damage_to");
-        listTitleHalfDamageTo.add(type);
-        return listTitleHalfDamageTo;
+        return TypeInfoActivityModel.getInstance().listTitleHalfDamageTo();
     }
 
     public ArrayList<Type> getListTitleNoDamageFrom() {
-        Type type = new Type();
-        type.setName("no_damage_from");
-        listTitleNoDamageFrom.add(type);
-        return listTitleNoDamageFrom;
+        return TypeInfoActivityModel.getInstance().listTitleNoDamageFrom();
     }
 
     public ArrayList<Type> getListTitleNoDamageTo() {
-        Type type = new Type();
-        type.setName("no_damage_to");
-        listTitleNoDamageTo.add(type);
-        return listTitleNoDamageTo;
+        return TypeInfoActivityModel.getInstance().listTitleNoDamageTo();
+    }
+
+    public ArrayList<Type> getListTypeHeader(Type type) {
+        return TypeInfoActivityModel.getInstance().listTypeHeader(type);
     }
 }
