@@ -2,6 +2,7 @@ package com.example.testeandroids.bussines;
 
 import com.example.testeandroids.R;
 import com.example.testeandroids.bussines.implemetacao.IDescriptionPokemonActivityModel;
+import com.example.testeandroids.data.ResultsItem;
 import com.example.testeandroids.data.pokemondata.PokemonResponse;
 import com.example.testeandroids.repository.service.PokeApiService;
 import com.example.testeandroids.repository.service.RetrofitService;
@@ -34,6 +35,8 @@ public class DescriptionPokemonActivityModel implements IDescriptionPokemonActiv
                 return  R.drawable.ic_ground;
             case "dark":
                 return R.drawable.ic_dark;
+            case "fire":
+                return R.drawable.ic_fire;
             case "dragon":
                 return R.drawable.ic_dragon;
             case "electric":
@@ -44,6 +47,8 @@ public class DescriptionPokemonActivityModel implements IDescriptionPokemonActiv
                 return R.drawable.ic_fighting;
             case "ghost":
                 return R.drawable.ic_ghost;
+            case "flying":
+                return R.drawable.ic_flying;
             case "grass":
                 return R.drawable.ic_grass;
             case "ice":
@@ -96,6 +101,10 @@ public class DescriptionPokemonActivityModel implements IDescriptionPokemonActiv
                 return R.color.teal_700;
             case "water":
                 return R.color.azul;
+            case "flying":
+                return R.color.flyingp;
+            case "fire":
+                return R.color.fire;
             default:
                 return R.color.black;
         }

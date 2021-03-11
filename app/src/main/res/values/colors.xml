@@ -14,9 +14,11 @@
     <color name="laranja">#FF917D</color>
     <color name="ice">#1DDDA6</color>
     <color name="grass">#3ECC00</color>
-    <color name="fighting">#FF0000</color>
+    <color name="fighting">#DC3B3B</color>
     <color name="fairy">#FF7BFD</color>
     <color name="electric">#FFEB3B</color>
     <color name="bug">#84CD65</color>
     <color name="ground">#8C6547</color>
+    <color name="flyingp">#B5F3F3</color>
+    <color name="fire">#FF0000</color>
 </resources>
