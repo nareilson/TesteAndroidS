@@ -53,13 +53,7 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     public List<ResultsItem> serchViewRules(String newText){
-        ArrayList<ResultsItem> filterTemp = new ArrayList<>();
-            for(ResultsItem item:getCachTempAllListResult()){
-                if(item.getName().toLowerCase().contains(newText)){
-                    filterTemp.add(item);
-                }
-            }
-       return filterTemp;
+       return MainActivityModel.getInstance().serchViewRules(newText,getCachTempAllListResult());
     }
 
     @Override

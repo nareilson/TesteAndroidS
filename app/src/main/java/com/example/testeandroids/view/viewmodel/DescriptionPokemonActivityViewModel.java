@@ -38,4 +38,10 @@ public class DescriptionPokemonActivityViewModel extends ViewModel {
     public LiveData<Throwable> getErrorRequest() {
         return _errorRequest;
     }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        compositeDisposable.dispose();
+    }
 }

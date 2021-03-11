@@ -69,4 +69,9 @@ public class TypeInfoActivityViewModel extends ViewModel {
     public ArrayList<Type> getListTypeHeader(Type type) {
         return TypeInfoActivityModel.getInstance().listTypeHeader(type);
     }
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        compositeDisposable.dispose();
+    }
 }
