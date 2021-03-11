@@ -8,4 +8,5 @@
     <string name="alert_error">Error: %s</string>
     <string name="intent_name_type">type</string>
     <string name="intent_name_pokemon">pokemon</string>
+    <string name="erro_ao_buscar_item">Ops, nao encontramos o nome que busca</string>
 </resources>
