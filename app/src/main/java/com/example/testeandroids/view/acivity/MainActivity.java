@@ -3,10 +3,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 import com.example.testeandroids.R;
 import com.example.testeandroids.data.ResultsItem;
@@ -25,10 +27,12 @@ public class MainActivity extends AppCompatActivity implements ListPokemonAdapte
     private ListPokemonAdapter listPokemonAdapter;
     private ProgressDialog progressDialog;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle(getString(R.string.txt_carregando));
         mainActivityModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
@@ -42,6 +46,12 @@ public class MainActivity extends AppCompatActivity implements ListPokemonAdapte
     private void initElemntView(){
         activityMainBinding.rvListPokemon.setLayoutManager(new LinearLayoutManager(getBaseContext(),LinearLayoutManager.VERTICAL,false));
         activityMainBinding.rvListPokemon.setAdapter(listPokemonAdapter);
+        activityMainBinding.rvListPokemon.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+
+            }
+        });
     }
 
     private void observable(){
@@ -61,4 +71,5 @@ public class MainActivity extends AppCompatActivity implements ListPokemonAdapte
         intent.putExtra("pokemon",item);
         startActivity(intent);
     }
+
 }

@@ -13,6 +13,8 @@ public class MainActivityViewModel extends ViewModel {
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private final MutableLiveData<Throwable> _requetError = new MutableLiveData<>();
     private final MutableLiveData<PokemonListResponse> _requestCaractersSucess = new MutableLiveData<>();
+    private final MutableLiveData<Integer> _mContTest = new MutableLiveData<>();
+
     public void requestService(int valorIncio, int valorLimit){
         compositeDisposable.add(
                 MainActivityModel
@@ -28,6 +30,10 @@ public class MainActivityViewModel extends ViewModel {
 
     public MutableLiveData<PokemonListResponse> getRequestCaractersSucess() {
         return _requestCaractersSucess;
+    }
+
+    public MutableLiveData<Integer> getCont(){
+        return _mContTest;
     }
 
     @Override
